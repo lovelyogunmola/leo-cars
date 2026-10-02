@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>LEO Admin</title>
+<style>
+body{background:#000;color:#fff;font:16px/1.4 system-ui,sans-serif;padding:16px 16px 70px;max-width:640px;margin:auto}
+h1{font-size:24px}h2{font-size:18px;border-top:1px solid #2a2a2a;padding-top:16px;margin-top:24px}
+input,select,button{font:inherit;width:100%;padding:12px;margin:6px 0;background:#111;color:#fff;border:1px solid #444;border-radius:6px;box-sizing:border-box}
+button{background:#d4141c;border:0;font-weight:700}button.g{background:#222;border:1px solid #555}
+.car{border:1px solid #2a2a2a;padding:12px;margin:10px 0;border-radius:6px}.car b{display:block}
+#msg{position:fixed;left:0;right:0;bottom:0;background:#222;padding:12px 16px;border-top:1px solid #555}small{color:#a8a8a8}
+</style></head><body>
+<h1>LEO Admin</h1>
+<div id="login"><small>Your GitHub token is saved only on this phone.</small>
+<input id="repo" value="lovelyogunmola/leo-cars" aria-label="Repository">
+<input id="tok" type="password" placeholder="GitHub token" autocomplete="off">
+<button id="go">Log in</button></div>
+<div id="app" hidden>
+<h2>Your cars</h2><div id="list"></div><button id="save">Save changes</button>
+<h2>Add a car</h2>
+<input id="y" type="number" placeholder="Year (e.g. 2015)">
+<input id="n" placeholder="Make and model">
+<input id="c" placeholder="Imported from (e.g. USA)">
+<input id="d" placeholder="Details (colour, mileage...)">
+<input id="p" type="number" placeholder="Price in naira (empty = price on WhatsApp)">
+<input id="o" placeholder="Note (e.g. Shipping to Lagos included)">
+<small>Photos</small><input id="ph" type="file" accept="image/*" multiple>
+<small>Videos (short, under 15 MB each)</small><input id="vd" type="file" accept="video/mp4,video/*" multiple>
+<button id="add">Post car</button><button class="g" id="out">Log out</button></div>
+<div id="msg" hidden></div>
+<script>
+var $=function(i){return document.getElementById(i)},cars=[],repo="",tok="";
+function say(t){var m=$("msg");m.hidden=!t;m.textContent=t||""}
+function api(path,o){o=o||{};o.headers={Authorization:"Bearer "+tok,Accept:"application/vnd.github+json","Content-Type":"application/json"};
+ return fetch("https://api.github.com/repos/"+repo+path,o).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.message||r.status);return j})})}
+function b64(s){return btoa(unescape(encodeURIComponent(s)))}
+function toB64(b){return new Promise(function(r){var f=new FileReader();f.onload=function(){r(f.result.split(",")[1])};f.readAsDataURL(b)})}
+function load(){return api("/contents/cars.json").then(function(j){cars=JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,"")))));show()})}
+function saveCars(m){return api("/contents/cars.json").then(function(j){return api("/contents/cars.json",{method:"PUT",body:JSON.stringify({message:m,content:b64(JSON.stringify(cars,null,2)),sha:j.sha})})})}
+function up(p,b){return toB64(b).then(function(c){return api("/contents/"+p,{method:"PUT",body:JSON.stringify({message:"Add "+p,content:c})})})}
+function img(f){return new Promise(function(res,rej){var i=new Image();i.onload=function(){var k=Math.min(1,1200/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);c.toBlob(res,"image/jpeg",.8)};i.onerror=rej;i.src=URL.createObjectURL(f)})}
+function poster(f){return new Promise(function(res){var v=document.createElement("video");v.muted=true;v.playsInline=true;v.preload="auto";v.src=URL.createObjectURL(f);setTimeout(function(){res(null)},8000);
+ v.onloadeddata=function(){v.currentTime=Math.min(1,(v.duration||2)/2)};
+ v.onseeked=function(){var k=Math.min(1,640/v.videoWidth),c=document.createElement("canvas");c.width=v.videoWidth*k;c.height=v.videoHeight*k;c.getContext("2d").drawImage(v,0,0,c.width,c.height);c.toBlob(res,"image/jpeg",.8)};v.onerror=function(){res(null)}})}
+function show(){var l=$("list");l.innerHTML="";cars.forEach(function(c,i){var d=document.createElement("div");d.className="car";var b=document.createElement("b");b.textContent=((c.year||"")+" "+c.name).trim();d.appendChild(b);
+ var s=document.createElement("select");["available","reserved","sold"].forEach(function(v){var o=document.createElement("option");o.value=o.textContent=v;if(v===c.status)o.selected=true;s.appendChild(o)});s.onchange=function(){c.status=s.value};d.appendChild(s);
+ var x=document.createElement("button");x.className="g";x.textContent="Remove from site";x.onclick=function(){if(confirm("Remove this car?")){cars.splice(i,1);show()}};d.appendChild(x);l.appendChild(d)})}
+$("go").onclick=function(){repo=$("repo").value.trim();tok=$("tok").value.trim();say("Logging in...");
+ load().then(function(){try{localStorage.setItem("leo",JSON.stringify({repo:repo,tok:tok}))}catch(e){}$("login").hidden=true;$("app").hidden=false;say("")}).catch(function(e){say("Login failed: "+e.message)})};
+$("save").onclick=function(){say("Saving...");saveCars("Update cars").then(function(){say("Saved. The site updates in about a minute.")}).catch(function(e){say("Error: "+e.message)})};
+$("out").onclick=function(){try{localStorage.removeItem("leo")}catch(e){}location.reload()};
+$("add").onclick=function(){var n=$("n").value.trim();if(!n)return say("Enter the make and model.");
+ var id=Date.now().toString(36),pf=[].slice.call($("ph").files),vf=[].slice.call($("vd").files);
+ if(vf.some(function(f){return f.size>15e6}))return say("A video is over 15 MB. Please use a shorter one.");
+ var car={year:+$("y").value||null,name:n,country:$("c").value.trim(),details:$("d").value.trim(),price:+$("p").value||0,status:"available",note:$("o").value.trim(),photos:[],videos:[]},ch=Promise.resolve();
+ pf.forEach(function(f,i){ch=ch.then(function(){say("Uploading photo "+(i+1)+" of "+pf.length+"...");var p="images/"+id+"-"+(i+1)+".jpg";return img(f).then(function(b){return up(p,b)}).then(function(){car.photos.push(p)})})});
+ vf.forEach(function(f,i){ch=ch.then(function(){say("Uploading video "+(i+1)+" of "+vf.length+"...");var p="videos/"+id+"-"+(i+1)+".mp4";return up(p,f).then(function(){car.videos.push(p);return poster(f)}).then(function(b){return b&&up(p.replace(".mp4",".jpg"),b)})})});
+ ch.then(function(){cars.unshift(car);say("Saving...");return saveCars("Add "+n)}).then(function(){say("Done. The site updates in about a minute.");show();["y","n","c","d","p","o","ph","vd"].forEach(function(k){$(k).value=""})}).catch(function(e){say("Error: "+e.message)})};
+try{var s=JSON.parse(localStorage.getItem("leo"));if(s){$("repo").value=s.repo;$("tok").value=s.tok;$("go").click()}}catch(e){}
+</script></body></html>

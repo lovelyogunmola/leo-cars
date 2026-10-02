@@ -1,0 +1,72 @@
+[
+  {
+    "year": 2013,
+    "name": "Hyundai Elantra Limited Sedan 4D",
+    "country": "USA",
+    "details": "Red, automatic, black leather seats",
+    "price": 7999999,
+    "status": "available",
+    "note": "",
+    "photos": [
+      "images/elantra-2013-1.jpg",
+      "images/elantra-2013-2.jpg",
+      "images/elantra-2013-3.jpg",
+      "images/elantra-2013-4.jpg",
+      "images/elantra-2013-5.jpg"
+    ],
+    "videos": []
+  },
+  {
+    "year": null,
+    "name": "Red sports coupe",
+    "country": "",
+    "details": "Watch the video. Message us for details.",
+    "price": 0,
+    "status": "available",
+    "note": "",
+    "photos": [],
+    "videos": [
+      "videos/car-2-1.mp4",
+      "videos/car-2-2.mp4"
+    ]
+  },
+  {
+    "year": null,
+    "name": "More cars from our lot, part 1",
+    "country": "",
+    "details": "Watch the video. Message us for the make, model and price.",
+    "price": 0,
+    "status": "available",
+    "note": "",
+    "photos": [],
+    "videos": [
+      "videos/car-3-1.mp4"
+    ]
+  },
+  {
+    "year": null,
+    "name": "More cars from our lot, part 2",
+    "country": "",
+    "details": "Watch the video. Message us for the make, model and price.",
+    "price": 0,
+    "status": "available",
+    "note": "",
+    "photos": [],
+    "videos": [
+      "videos/car-4-1.mp4"
+    ]
+  },
+  {
+    "year": null,
+    "name": "More cars from our lot, part 3",
+    "country": "",
+    "details": "Watch the video. Message us for the make, model and price.",
+    "price": 0,
+    "status": "available",
+    "note": "",
+    "photos": [],
+    "videos": [
+      "videos/car-5-1.mp4"
+    ]
+  }
+]
