@@ -1,133 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="theme-color" content="#050505">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LEO | Imported Cars</title>
-<meta name="description" content="Quality used cars imported from abroad and shipped to Nigeria. Message us on WhatsApp.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="LEO">
-<meta property="og:title" content="LEO | Imported Cars">
-<meta property="og:description" content="Quality used cars imported from abroad and shipped to Nigeria. Message us on WhatsApp.">
-<meta property="og:url" content="https://lovelyogunmola.github.io/leo-cars/">
-<meta property="og:image" content="https://lovelyogunmola.github.io/leo-cars/preview.jpg">
-<meta property="og:image:width" content="600">
-<meta property="og:image:height" content="600">
-<meta name="twitter:card" content="summary">
-<link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#050505;--fg:#f5f1e6;--mute:#a69f8d;--line:rgba(201,162,75,.28);--gold:#c9a24b;--gold-l:#f3e3ae;--g:linear-gradient(135deg,#f3e3ae,#c9a24b 55%,#8f6b24);--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
-body{margin:0;background:radial-gradient(ellipse 80% 420px at 50% 0,#1a1509 0,transparent 70%) no-repeat,var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:96px}
-::selection{background:var(--gold);color:#000}
-.d{font-family:var(--serif);font-weight:600;line-height:1.05;letter-spacing:.01em}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-header{padding:36px 20px 8px;max-width:960px;margin:0 auto;text-align:center}
-.logo{display:block;width:min(74vw,340px);height:auto;margin:0 auto}
-header p{max-width:34em;color:var(--mute);margin:18px auto 0;font-size:17px}
-header::after{content:"";display:block;width:64px;height:1px;background:var(--g);margin:30px auto 28px}
-main{max-width:1120px;margin:0 auto;padding:0 20px}
-.chips{display:flex;gap:10px;overflow-x:auto;padding:4px 0 24px;justify-content:safe center}
-.chips button{flex:none;background:none;color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:9px 18px;font:inherit;font-size:13px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
-.chips button[aria-pressed=true]{background:var(--g);color:#1a1305;border-color:transparent}
-.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-.card{position:relative;border:1px solid var(--line);background:linear-gradient(180deg,#0e0c08,#070707);padding:18px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s,transform .3s,box-shadow .3s}
-@media(hover:hover){.card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 18px 40px -18px rgba(201,162,75,.4)}}
-.main{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#111}
-.th{display:flex;gap:6px;margin:6px 0 10px}.th img{flex:1;min-width:0;width:0;aspect-ratio:1;object-fit:cover;cursor:pointer;border:1px solid transparent;opacity:.6}.th img.on{border-color:var(--gold);opacity:1}
-.yr,.price,.how h2{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
-.yr{font-size:64px;margin:8px 0 0}
-.card h2{font-size:30px;margin:0}
-.meta{color:var(--mute);margin:0;font-size:15px}
-.price{font-size:34px;margin:10px 0 12px}.price.ask{font-size:24px}
-.row{display:flex;gap:10px;margin-top:auto}
-a.b{flex:1;text-align:center;padding:13px 8px;border:1px solid var(--gold);color:var(--gold-l);text-decoration:none;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;transition:background .25s,filter .25s}
-a.b:hover{background:rgba(201,162,75,.12)}
-a.b.w{background:var(--g);border-color:transparent;color:#1a1305}
-a.b.w:hover{filter:brightness(1.1)}
-a:focus-visible,button:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px}
-.badge{position:absolute;top:30px;left:30px;z-index:2;background:var(--g);color:#1a1305;padding:4px 14px;font-weight:700;font-size:12px;letter-spacing:.18em}
-.sold .main,.sold .th{filter:grayscale(1);opacity:.45}
-.how{margin:64px 0 28px;border-top:1px solid var(--line);padding-top:36px;text-align:center}
-.how h2{font-size:40px;margin:0 0 10px}
-.how p{color:var(--mute);max-width:36em;margin:0 auto}
-.steps{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 28px;counter-reset:s}
-.steps li{counter-increment:s;border-top:1px solid var(--line);padding:18px 0 22px}
-.steps li::before{content:counter(s);display:block;font-family:var(--serif);font-weight:600;font-size:46px;line-height:1;color:var(--gold);margin-bottom:8px}
-.steps b{display:block;font-size:18px;color:var(--gold-l)}
-.steps span{color:var(--mute);font-size:15px}
-.visit a.tel{color:var(--gold-l);font-weight:600;letter-spacing:.06em;text-decoration:none}
-.visit a.b{display:inline-block;flex:none;margin-top:20px;padding:13px 28px}
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(5,5,5,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
-.bar a{flex:1;text-align:center;padding:14px 8px;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-l);text-decoration:none;border:1px solid var(--gold)}
-.bar a.w{background:var(--g);border-color:transparent;color:#1a1305}
-@media(min-width:900px){body{padding-bottom:110px}header{padding-top:56px}.bar{left:50%;right:auto;bottom:18px;transform:translateX(-50%);width:420px;border:1px solid var(--line);border-radius:999px;padding:8px}.bar a{border-radius:999px;padding:12px 8px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LEO Imported Cars — quality used cars imported from abroad and shipped to Nigeria." />
+  <title>LEO Cars | Imported Cars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header>
-<h1 class="vh">LEO Imported Cars</h1>
-<img class="logo" src="images/logo.svg" alt="LEO Imported Cars logo" width="360" height="140">
-<p>Quality used cars imported from abroad and shipped to Nigeria. Message us on WhatsApp for any car you see here, or for one you want us to find.</p>
-</header>
-<main>
-<div class="chips" id="chips" aria-label="Filter by country of origin"></div>
-<section class="grid" id="grid" aria-live="polite"></section>
-<section class="how">
-<h2 class="d">How it works</h2>
-<ol class="steps">
-<li><b>Choose a car</b><span>Pick one from this page, or tell us the car you want.</span></li>
-<li><b>Confirm the price</b><span>We confirm the full price with you on WhatsApp before you pay.</span></li>
-<li><b>We ship it</b><span>We ship the car to Nigeria.</span></li>
-<li><b>You receive it</b><span>Your car arrives in Nigeria.</span></li>
-</ol>
-</section>
-<section class="how">
-<h2 class="d">Want a car not listed?</h2>
-<p>Tell us the make, model, year and budget. We will source it abroad and confirm the full price, including shipping to Nigeria, before you pay anything.</p>
-</section>
-<section class="how visit">
-<h2 class="d">Visit our lot</h2>
-<p>219 Upper Siluko Road, Benin City, Edo State, Nigeria</p>
-<p style="margin-top:8px"><a class="tel" href="tel:+2349053184593">+234 905 3184 593</a></p>
-<a class="b" href="https://www.google.com/maps/search/?api=1&amp;query=219+Upper+Siluko+Road+Benin+City+Edo+State+Nigeria">Get directions</a>
-</section>
-</main>
-<nav class="bar" aria-label="Contact">
-<a href="tel:+2349053184593">Call us</a>
-<a class="w" href="https://wa.me/2349053184593?text=Hello%20LEO%2C%20I%20want%20to%20enquire%20about%20a%20car.">WhatsApp</a>
-</nav>
-<script>
-var PHONE="2349053184593",cars=[],cur="All",grid=document.getElementById("grid");
-function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
-function money(n){return "\u20A6"+n.toLocaleString("en-US")}
-function draw(){
- var countries=["All"];
- cars.forEach(function(x){if(x.country&&countries.indexOf(x.country)<0)countries.push(x.country)});
- var ch=document.getElementById("chips");ch.innerHTML="";if(countries.length<3)countries=[];
- countries.forEach(function(k){var b=document.createElement("button");b.textContent=k==="All"?"All cars":"From "+k;b.setAttribute("aria-pressed",k===cur);b.onclick=function(){cur=k;draw()};ch.appendChild(b)});
- grid.innerHTML="";
- var list=cars.filter(function(x){return cur==="All"||x.country===cur});
- list.sort(function(a,b){return (a.status==="sold")-(b.status==="sold")});
- list.forEach(function(x){
-  var sold=x.status==="sold",res=x.status==="reserved",title=(x.year?x.year+" ":"")+x.name;
-  var t=sold?"Hello LEO, I saw the "+title+" was sold. Do you have something similar?":"Hello LEO, I am interested in the "+title+(x.price?" ("+money(x.price)+")":"")+". What is the price and is it available?";
-  var d=document.createElement("article");d.className="card"+(sold?" sold":"");
-  d.innerHTML=(sold?'<span class="badge">SOLD</span>':res?'<span class="badge">RESERVED</span>':'')+(x.year?'<p class="yr d">'+esc(x.year)+'</p>':'')+'<h2 class="d">'+esc(x.name)+'</h2><p class="meta">'+(x.country?'Imported from '+esc(x.country)+' \u00B7 ':'')+esc(x.details)+'</p><p class="price d'+(x.price&&!sold?'':' ask')+'">'+(sold?'Sold':x.price?money(x.price):'Price on WhatsApp')+'</p>'+(x.note&&!sold?'<p class="meta">'+esc(x.note)+'</p>':'')+
-  '<div class="row"><a class="b" href="tel:+'+PHONE+'">Call</a><a class="b w" href="https://wa.me/'+PHONE+'?text='+encodeURIComponent(t)+'">'+(sold?'Ask for similar':'Ask on WhatsApp')+'</a></div>';
-  var ph=x.photos||[];
-  if(ph.length){var mi=document.createElement("img");mi.className="main";mi.alt=title;mi.src=ph[0];var th=document.createElement("div");th.className="th";
-   if(ph.length>1){ph.forEach(function(u,i){var im=document.createElement("img");im.src=u;im.loading="lazy";im.alt="Photo "+(i+1);if(!i)im.className="on";im.onclick=function(){mi.src=u;[].forEach.call(th.children,function(c){c.className=""});im.className="on"};th.appendChild(im)});d.insertBefore(th,d.firstChild)}
-   d.insertBefore(mi,d.firstChild)}
-  (x.videos||[]).slice().reverse().forEach(function(u){var v=document.createElement("video");v.className="main";v.controls=true;v.playsInline=true;v.preload="none";v.poster=u.replace(/\.mp4$/i,".jpg");v.src=u;d.insertBefore(v,d.firstChild)});
-  grid.appendChild(d)});
-}
-fetch("cars.json",{cache:"no-cache"}).then(function(r){return r.json()}).then(function(d){cars=d;draw()}).catch(function(){grid.innerHTML='<p class="meta">Cars could not load. Please refresh, or message us on WhatsApp.</p>'});
-</script>
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="LEO Cars home">
+        <img src="assets/leo-logo.png" alt="LEO Cars logo">
+        <span>LEO <b>CARS</b></span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a class="active" href="#top">Home</a>
+        <a href="#inventory">Our Cars</a>
+        <a href="#how">How It Works</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="https://wa.me/2349053184593?text=Hello%20LEO%20Cars%2C%20I%27d%20like%20to%20ask%20about%20a%20car.">WhatsApp Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <p class="eyebrow">PREMIUM IMPORTED CARS · NIGERIA</p>
+        <h1>Drive something<br><em>worth remembering.</em></h1>
+        <p class="hero-copy">
+          Quality used cars imported from abroad, carefully sourced and shipped to Nigeria.
+          Tell us what you want and we will help you find it.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#inventory">Explore Our Cars <span>→</span></a>
+          <a class="btn btn-outline" href="https://wa.me/2349053184593?text=Hello%20LEO%20Cars%2C%20I%27m%20looking%20for%20a%20car.">Chat on WhatsApp</a>
+        </div>
+        <div class="hero-trust">
+          <span>✓ Transparent pricing</span>
+          <span>✓ Imported to Nigeria</span>
+          <span>✓ Personal sourcing service</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-bar">
+      <div class="container trust-grid">
+        <div><strong>01</strong><span>Verified sourcing</span></div>
+        <div><strong>02</strong><span>Clear pricing before payment</span></div>
+        <div><strong>03</strong><span>Shipping to Nigeria</span></div>
+        <div><strong>04</strong><span>WhatsApp support</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="inventory">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">OUR COLLECTION</p>
+            <h2>Find your next <em>drive.</em></h2>
+          </div>
+          <a class="text-link" href="https://wa.me/2349053184593?text=Hello%20LEO%20Cars%2C%20please%20send%20me%20your%20available%20cars.">Request current inventory →</a>
+        </div>
+
+        <!-- Replace these example cards with the vehicles actually available on your site. -->
+        <div class="car-grid">
+          <article class="car-card">
+            <div class="car-image image-1"><span>PREMIUM</span></div>
+            <div class="car-body">
+              <p class="car-type">Luxury Sedan</p>
+              <h3>Premium Executive Sedan</h3>
+              <p class="car-meta">Automatic · Petrol · Imported</p>
+              <a href="https://wa.me/2349053184593?text=Hello%20LEO%20Cars%2C%20I%27m%20interested%20in%20your%20premium%20sedan." class="card-link">Ask for price <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="car-card">
+            <div class="car-image image-2"><span>POPULAR</span></div>
+            <div class="car-body">
+              <p class="car-type">Premium SUV</p>
+              <h3>Luxury Family SUV</h3>
+              <p class="car-meta">Automatic · Petrol · Imported</p>
+              <a href="https://wa.me/2349053184593?text=Hello%20LEO%20Cars%2C%20I%27m%20interested%20in%20your%20premium%20SUV." class="card-link">Ask for price <span>→</span></a>
+            </div>
+          </article>
+
+          <article class="car-card">
+            <div class="car-image image-3"><span>SPORT</span></div>
+            <div class="car-body">
+              <p class="car-type">Performance</p>
+              <h3>Performance Coupe</h3>
+              <p class="car-meta">Automatic · Petrol · Imported</p>
+              <a href="https://wa.me/2349053184593?text=Hello%20LEO%20Cars%2C%20I%27m%20interested%20in%20your%20performance%20car." class="card-link">Ask for price <span>→</span></a>
+            </div>
+          </article>
+        </div>
+
+        <div class="inventory-note">
+          <strong>Looking for a specific car?</strong>
+          <span>Send us the make, model, year and budget. We'll source it abroad and confirm the full landed price before you pay.</span>
+          <a class="btn btn-small" href="https://wa.me/2349053184593?text=Hello%20LEO%20Cars%2C%20I%20want%20you%20to%20source%20a%20car%20for%20me.">Source a Car →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark-section" id="how">
+      <div class="container">
+        <div class="section-head light">
+          <div>
+            <p class="eyebrow">SIMPLE PROCESS</p>
+            <h2>From search to <em>steering wheel.</em></h2>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step"><span>01</span><h3>Choose</h3><p>Pick a car from our available listings or tell us exactly what you want.</p></div>
+          <div class="step"><span>02</span><h3>Confirm</h3><p>We confirm the vehicle, total price and shipping details with you on WhatsApp.</p></div>
+          <div class="step"><span>03</span><h3>Ship</h3><p>Once everything is agreed, your vehicle is shipped to Nigeria.</p></div>
+          <div class="step"><span>04</span><h3>Receive</h3><p>Your car arrives in Nigeria and we keep you updated through the process.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="about-photo"></div>
+        <div class="about-copy">
+          <p class="eyebrow">ABOUT LEO CARS</p>
+          <h2>Luxury is the feeling of getting it <em>right.</em></h2>
+          <p>
+            LEO Cars connects Nigerian buyers with quality used vehicles sourced from abroad.
+            Our focus is simple: clear communication, carefully selected cars and a buying process
+            that feels straightforward from first message to delivery.
+          </p>
+          <div class="stats">
+            <div><strong>01</strong><span>Direct WhatsApp support</span></div>
+            <div><strong>02</strong><span>International sourcing</span></div>
+            <div><strong>03</strong><span>Transparent total pricing</span></div>
+          </div>
+          <a class="btn btn-dark" href="#contact">Talk to LEO Cars →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container cta-inner">
+        <div>
+          <p class="eyebrow">READY TO DRIVE?</p>
+          <h2>Tell us the car<br><em>you have in mind.</em></h2>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-gold" href="https://wa.me/2349053184593?text=Hello%20LEO%20Cars%2C%20I%27d%20like%20to%20source%20a%20car.%20Here%20are%20my%20details%3A">Start on WhatsApp →</a>
+          <a class="phone" href="tel:+2349053184593">+234 905 318 4593</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand footer-brand"><img src="assets/leo-logo.png" alt="LEO Cars logo"><span>LEO <b>CARS</b></span></div>
+        <p>Quality used cars imported from abroad and shipped to Nigeria.</p>
+      </div>
+      <div><h4>Explore</h4><a href="#inventory">Our Cars</a><a href="#how">How It Works</a><a href="#about">About Us</a></div>
+      <div><h4>Contact</h4><a href="tel:+2349053184593">+234 905 3184 593</a><a href="https://wa.me/2349053184593">WhatsApp</a><span>219 Upper Siluko Road,<br>Benin City, Edo State</span></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 LEO Cars. All rights reserved.</span><span>LUXURY · PERFORMANCE · TRUST</span></div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
